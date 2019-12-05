@@ -8,5 +8,7 @@ SOURCES += \
         write.cpp
 
 HEADERS += \
-    write.h
+    file.h
 
+
+INCLUDEPATH += D:\archiv\dev\source\cpp\test\jsoncpp-master\include

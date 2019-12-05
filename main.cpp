@@ -1,9 +1,13 @@
 #include <iostream>
 
-#include "write.h"
+#include "file.h"
 
 
 int main() {
-    for (int i = 0; i < 30; i++) std::cout << Write::read();
+    // Example
+
+    File::write("test.txt", "test query");
+
+    std::cout << File::read("test.txt");
     return 0;
 }

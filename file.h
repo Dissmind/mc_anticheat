@@ -1,25 +1,26 @@
-#ifndef WRITE_H
-#define WRITE_H
+#ifndef File_H
+#define File_H
 
 #include <string>
 
-class Write
+class File
 {
 private:
     std::string path = "C:/Windows/Temp/";
-    std::string nameFile;
+    std::string nameFile = "";
 
 public:
-    Write();
+    File();
     static void write(std::string fileName, std::string content);
-    static std::string read();
+    static std::string read(std::string fileName);
 
     void setConfig(std::string fileName, std::string content);
 
-    std::string getPath() { return path; }
+    std::string getPath()     { return this->path;     }
+    std::string getNameFile() { return this->nameFile; }
 
-    void setPath(std::string value)     { path = value;     }
-    void setFileName(std::string value) { nameFile = value; }
+    void setPath(std::string value)     { this->path = value;     }
+    void setNameFile(std::string value) { this->nameFile = value; }
 };
 
 #endif // WRITE_H

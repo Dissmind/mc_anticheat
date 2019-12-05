@@ -4,36 +4,48 @@
 #include <random>
 #include <time.h>
 
-#include "write.h"
+#include "file.h"
 
 #include <iostream>
 
-Write::Write() { }
+File::File() { }
 
 
-void Write::write(std::string fileName, std::string content) {
-    std::ofstream fout;
-    Write write;
-
-    write.setFileName(fileName);
+void File::write(std::string nameFile, std::string content) {
+    File file;
+    file.setNameFile(nameFile);
     
-    fout.open(write.getPath() + fileName);
+    std::ofstream fout;
+    fout.open(file.getPath() + nameFile);
 
-    if (!fout.is_open()) std::cout << "Error. Don't Open file"; // TODO: Переделать через исключения
-    else fout << content;
+    if (fout.is_open()) fout << content;
+    else std::cout << "[File::write] Don't open file | path -> " + file.getPath() + nameFile;
 
     fout.close();
 }
 
 
-std::string Write::read() {
+std::string File::read(std::string nameFile) {
+    int intervalA = 1;
+    int intervalB = 1;
+
     srand(time(NULL));
-    int sec = rand();
+    
+    int sec = rand() % intervalB + intervalA;
 
-    std::cout << sec;
+    Sleep(sec * 1000);
 
-    Sleep(sec/10);
+    std::string content = "";
 
-    return " 10 ";
+    File file;
+    std::ifstream in;
+   in.open(file.getPath() + nameFile);
+
+    if (in.is_open()) getline(in, content);
+    else std::cout << "[File::read] Don't open file | path -> " + file.getPath() + nameFile;
+
+    in.close();
+
+    return content;
 }
 
